@@ -187,9 +187,9 @@ fi
 # =========================================
 
 # getting our lovely IP (no check certificate for debian 6 and older released)
-MOTD_MYIPADDR=`/sbin/ip -4 addr show dev eth0 | grep inet | awk -F '[ \t]+|/' '{print $3}' | sed ':a;N;$!ba;s/\n/\n              /g'`
+MOTD_MYIPADDR=`/sbin/ip -4 addr | grep inet | awk -F '[ \t]+|/' '{print $3}' | sort -u | uniq | sed ':a;N;$!ba;s/\n/\n              /g'`
 # getting our even cooler IP
-MOTD_MYIPADDR6=`/sbin/ip -6 addr show to 2000::/3 | grep inet6 | grep global | awk -F '[ \t]+|/' '{print $3}' | sed ':a;N;$!ba;s/\n/\n              /g'`
+MOTD_MYIPADDR6=`/sbin/ip -6 addr show | grep inet6 | grep global | awk -F '[ \t]+|/' '{print $3}' | sort -u | uniq | sed ':a;N;$!ba;s/\n/\n              /g'`
 # Get Kernel Info
 MOTD_KERNEL=`uname -r`
 # Getting Free Memory usage
